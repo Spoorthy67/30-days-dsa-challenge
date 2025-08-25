@@ -1,0 +1,18 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        int n=nums.length;
+        Arrays.sort(nums);
+        Set<List<Integer>> result = new HashSet<>();
+        for(int i=0;i<n;i++){
+            Set<Integer> hashset=new HashSet<>();
+            for(int j=i+1;j<n;j++){
+                int third=-(nums[i]+nums[j]);
+                if(hashset.Contains(third)){
+                    List<Integer> temp=Arrays.asList(nums[i],nums[j],third);
+
+                }
+            }
+        }
+        
+    }
+}
