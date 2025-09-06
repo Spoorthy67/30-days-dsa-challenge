@@ -1,0 +1,28 @@
+class KthLargest {
+    private PriorityQueue<Integer> minHeap;
+    private int k;
+
+    public KthLargest(int k, int[] nums) {
+        this.k = k;
+        this.minHeap = new PriorityQueue<>();
+
+        // Add all elements from nums into the heap
+        for (int num : nums) {
+            minHeap.offer(num);
+            // Keep only k largest elements
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+    }
+    
+    public int add(int val) {
+        minHeap.offer(val);
+        // Remove smallest if size exceeds k
+        if (minHeap.size() > k) {
+            minHeap.poll();
+        }
+        // The root of the heap is the kth largest element
+        return minHeap.peek();
+    }
+}
