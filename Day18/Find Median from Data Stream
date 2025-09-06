@@ -1,0 +1,30 @@
+class MedianFinder {
+    private PriorityQueue<Integer> lowerHalf; // Max-heap
+    private PriorityQueue<Integer> upperHalf; // Min-heap
+
+    public MedianFinder() {
+        lowerHalf = new PriorityQueue<>(Collections.reverseOrder());
+        upperHalf = new PriorityQueue<>();
+    }
+    
+    public void addNum(int num) {
+        // Add to max-heap first
+        lowerHalf.offer(num);
+        
+        // Ensure the largest of lowerHalf is smaller than smallest of upperHalf
+        upperHalf.offer(lowerHalf.poll());
+        
+        // Balance the heaps sizes: lowerHalf can have at most 1 more element
+        if (lowerHalf.size() < upperHalf.size()) {
+            lowerHalf.offer(upperHalf.poll());
+        }
+    }
+    
+    public double findMedian() {
+        if (lowerHalf.size() == upperHalf.size()) {
+            return (lowerHalf.peek() + upperHalf.peek()) / 2.0;
+        } else {
+            return lowerHalf.peek();
+        }
+    }
+}
