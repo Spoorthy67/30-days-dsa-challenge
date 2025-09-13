@@ -1,0 +1,14 @@
+class Solution {
+    public static int helper(TreeNode root,boolean flag){
+        //root null
+        if(root==null)return 0;
+        //root is leaf
+        if(root.left==null&&root.right==null&&flag==true)return root.val;
+        //root is intermidatery
+        return helper(root.left,true)+helper(root.right,false);
+    }
+    public int sumOfLeftLeaves(TreeNode root) {
+        return helper(root,false);
+        
+    }
+}
