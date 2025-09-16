@@ -1,0 +1,26 @@
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+
+        Set<String>set=new HashSet<>(wordDict);
+
+        return canBreak(0,s,set);
+        
+    }
+    public boolean canBreak(int start,String s,Set<String> set){
+        if(start==s.length()){
+            return true;
+        }
+
+        for(int end=start+1;end<=s.length();end++){
+            String prefix=s.substring(start,end);
+
+            if(set.contains(prefix)){
+                if(canBreak(end,s,set)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+}
