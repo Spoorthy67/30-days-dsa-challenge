@@ -1,0 +1,32 @@
+class Solution {
+    private int[][] directions = {{0,1}, {1,0}, {0,-1}, {-1,0}};
+    
+    public int longestIncreasingPath(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int maxPath = 0;
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                maxPath = Math.max(maxPath, dfs(matrix, i, j));
+            }
+        }
+        
+        return maxPath;
+    }
+    
+    private int dfs(int[][] matrix, int i, int j) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int max = 1; 
+        for(int[] dir : directions) {
+            int newX = i + dir[0];
+            int newY = j + dir[1];
+        
+            if(newX >= 0 && newX < m && newY >= 0 && newY < n&& matrix[newX][newY] > matrix[i][j]) {
+                max = Math.max(max, 1 + dfs(matrix, newX, newY));
+            }
+        }
+        
+        return max;
+    }
+}
