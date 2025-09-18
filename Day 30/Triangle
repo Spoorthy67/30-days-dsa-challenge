@@ -1,0 +1,18 @@
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        return dfs(triangle,0,0);
+    }
+
+    public int dfs(List<List<Integer>> triangle,int i,int j){
+        if(i==triangle.size()-1){
+            return triangle.get(i).get(j);
+        }
+
+
+        int down=dfs(triangle,i+1,j);
+        int dia=dfs(triangle,i+1,j+1);
+
+
+        return triangle.get(i).get(j)+Math.min(down,dia);
+    }
+}
